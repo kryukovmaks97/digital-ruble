@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Цифровой рубль: курс для педагогов</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Шапка */
+        header {
+            background: linear-gradient(135deg, #1a3a6b, #2d6bc4);
+            color: white;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        header h1 {
+            font-size: 1.4rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 0.95rem;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.7;
+        }
+
+        /* Hero-блок */
+        .hero {
+            background: linear-gradient(135deg, #1a3a6b, #2d6bc4, #1a8a5c);
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #1a8a5c;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        /* Секции */
+        section {
+            padding: 80px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section h3 {
+            font-size: 2rem;
+            color: #1a3a6b;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        /* Карточки */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            border-top: 4px solid #2d6bc4;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h4 {
+            color: #1a3a6b;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        /* Таблица */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        th {
+            background: #1a3a6b;
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        tr:hover {
+            background: #f5f8ff;
+        }
+
+        /* Тест */
+        .quiz {
+            background: #f5f8ff;
+            border-radius: 15px;
+            padding: 40px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .question {
+            margin-bottom: 25px;
+        }
+
+        .question p {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .question label {
+            display: block;
+            padding: 10px 15px;
+            margin-bottom: 8px;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .question label:hover {
+            background: #e8f0fe;
+        }
+
+        .question input {
+            margin-right: 10px;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* Подвал */
+        footer {
+            background: #1a3a6b;
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        footer a {
+            color: #7ec8a0;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a {
+                margin: 0 10px;
+                font-size: 0.85rem;
+            }
+
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+
+            section {
+                padding: 50px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Шапка -->
+    <header>
+        <h1>Цифровой рубль: курс для педагогов</h1>
+        <nav>
+            <a href="#about">О рубле</a>
+            <a href="#how">Как работает</a>
+            <a href="#materials">Материалы</a>
+            <a href="#quiz">Тест</a>
+            <a href="#links">Ссылки</a>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <div class="hero">
+        <h2>Цифровой рубль: новая финансовая реальность</h2>
+        <p>Всё, что нужно знать педагогу о третьей форме российского рубля — и как объяснить это школьникам</p>
+        <a href="#about" class="btn">Начать обучение</a>
+    </div>
+
+    <!-- О рубле -->
+    <section id="about">
+        <h3>Что такое цифровой рубль</h3>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto 40px;">
+            Цифровой рубль — это третья форма российского рубля, которая существует 
+            в виде цифрового кода на платформе Банка России. Он дополняет наличные 
+            и безналичные деньги, но не заменяет их.
+        </p>
+
+        <div class="cards">
+            <div class="card">
+                <h4>Наличные</h4>
+                <p>Хранятся в кошельке. Выпускает Банк России. Комиссий нет. Смарт-контракты недоступны.</p>
+            </div>
+            <div class="card">
+                <h4>Безналичные</h4>
+                <p>Хранятся на счёте в банке. Выпускает Банк России. Есть комиссии. Смарт-контракты недоступны.</p>
+            </div>
+            <div class="card">
+                <h4>Цифровые</h4>
+                <p>Хранятся в цифровом кошельке на платформе ЦБ. Комиссий для граждан нет. Смарт-контракты доступны.</p>
+            </div>
+        </div>
+
+        <table>
+            <tr>
+                <th>Критерий</th>
+                <th>Наличные</th>
+                <th>Безналичные</th>
+                <th>Цифровые</th>
+            </tr>
+            <tr>
+                <td>Где хранятся</td>
+                <td>В кошельке</td>
+                <td>На счёте в банке</td>
+                <td>В цифровом кошельке</td>
+            </tr>
+            <tr>
+                <td>Комиссии</td>
+                <td>Нет</td>
+                <td>Есть</td>
+                <td>Нет для граждан</td>
+            </tr>
+            <tr>
+                <td>Смарт-контракты</td>
+                <td>Нет</td>
+                <td>Нет</td>
+                <td>Да</td>
+            </tr>
+            <tr>
+                <td>Офлайн-режим</td>
+                <td>Да</td>
+                <td>Нет</td>
+                <td>Да</td>
+            </tr>
+        </table>
+    </section>
+
+    <!-- Как работает -->
+    <section id="how" style="background: #f5f8ff;">
+        <h3>Как это работает</h3>
+        <div class="cards">
+            <div class="card">
+                <h4>1. Открытие кошелька</h4>
+                <p>Гражданин открывает цифровой кошелёк через приложение любого банка.</p>
+            </div>
+            <div class="card">
+                <h4>2. Пополнение</h4>
+                <p>Переводит деньги с банковского счёта на цифровой кошелёк.</p>
+            </div>
+            <div class="card">
+                <h4>3. Использование</h4>
+                <p>Платит, переводит, использует смарт-контракты для автоматизации сделок.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Материалы -->
+    <section id="materials">
+        <h3>Методические материалы</h3>
+        <div class="cards">
+            <div class="card">
+                <h4>План занятия</h4>
+                <p>Готовый план занятия «Три формы российского рубля» с хронометражем и активностями.</p>
+                <a href="#" class="btn" style="margin-top: 15px; font-size: 0.9rem; padding: 10px 25px;">Скачать PDF</a>
+            </div>
+            <div class="card">
+                <h4>Сценарий игры</h4>
+                <p>Командная активность «Финансовый детектив» для закрепления материала.</p>
+                <a href="#" class="btn" style="margin-top: 15px; font-size: 0.9rem; padding: 10px 25px;">Скачать PDF</a>
+            </div>
+            <div class="card">
+                <h4>Инфографика</h4>
+                <p>Наглядная схема «Три формы валюты» для использования на занятии.</p>
+                <a href="#" class="btn" style="margin-top: 15px; font-size: 0.9rem; padding: 10px 25px;">Скачать PNG</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Тест -->
+    <section id="quiz">
+        <h3>Проверь себя</h3>
+        <div class="quiz">
+            <form id="quizForm">
+                <div class="question">
+                    <p>1. Что такое цифровой рубль?</p>
+                    <label><input type="radio" name="q1" value="a"> Новая криптовалюта</label>
+                    <label><input type="radio" name="q1" value="b"> Третья форма российского рубля</label>
+                    <label><input type="radio" name="q1" value="c"> Валюта другой страны</label>
+                </div>
+
+                <div class="question">
+                    <p>2. Где хранится цифровой рубль?</p>
+                    <label><input type="radio" name="q2" value="a"> В кошельке</label>
+                    <label><input type="radio" name="q2" value="b"> На счёте в банке</label>
+                    <label><input type="radio" name="q2" value="c"> В цифровом кошельке на платформе Банка России</label>
+                </div>
+
+                <div class="question">
+                    <p>3. Кто выпускает цифровой рубль?</p>
+                    <label><input type="radio" name="q3" value="a"> Коммерческие банки</label>
+                    <label><input type="radio" name="q3" value="b"> Банк России</label>
+                    <label><input type="radio" name="q3" value="c"> Частные компании</label>
+                </div>
+
+                <div class="question">
+                    <p>4. Что такое смарт-контракт?</p>
+                    <label><input type="radio" name="q4" value="a"> Договор, который выполняется автоматически</label>
+                    <label><input type="radio" name="q4" value="b"> Бумажный договор</label>
+                    <label><input type="radio" name="q4" value="c"> Устная договорённость</label>
+                </div>
+
+                <div class="question">
+                    <p>5. Может ли цифровой рубль работать без интернета?</p>
+                    <label><input type="radio" name="q5" value="a"> Нет</label>
+                    <label><input type="radio" name="q5" value="b"> Да, в офлайн-режиме</label>
+                    <label><input type="radio" name="q5" value="c"> Только через банк</label>
+                </div>
+
+                <button type="button" class="btn" onclick="checkQuiz()" style="width: 100%;">Проверить результат</button>
+            </form>
+            <div id="result"></div>
+        </div>
+    </section>
+
+    <!-- Ссылки -->
+    <section id="links" style="background: #f5f8ff;">
+        <h3>Полезные ссылки</h3>
+        <div class="cards">
+            <div class="card">
+                <h4>Банк России</h4>
+                <p><a href="https://cbr.ru" target="_blank">cbr.ru</a> — официальная информация о цифровом рубле.</p>
+            </div>
+            <div class="card">
+                <h4>Финансовая грамотность</h4>
+                <p><a href="https://fincult.info" target="_blank">fincult.info</a> — портал для педагогов и граждан.</p>
+            </div>
+            <div class="card">
+                <h4>Минфин России</h4>
+                <p><a href="https://minfin.gov.ru" target="_blank">minfin.gov.ru</a> — документы и разъяснения.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer>
+        <p>Образовательный сайт «Цифровой рубль: курс для педагогов»</p>
+        <p style="margin-top: 10px;">Автор: [ФИО] | Использованные нейросети: ChatGPT, DeepSeek, Алиса AI</p>
+        <p style="margin-top: 10px;"><a href="mailto:email@example.com">Обратная связь</a></p>
+    </footer>
+
+    <script>
+        function checkQuiz() {
+            const answers = {
+                q1: 'b',
+                q2: 'c',
+                q3: 'b',
+                q4: 'a',
+                q5: 'b'
+            };
+
+            let score = 0;
+            let total = Object.keys(answers).length;
+            let allAnswered = true;
+
+            for (let key in answers) {
+                const selected = document.querySelector(`input[name="${key}"]:checked`);
+                if (!selected) {
+                    allAnswered = false;
+                    break;
+                }
+                if (selected.value === answers[key]) {
+                    score++;
+                }
+            }
+
+            const resultDiv = document.getElementById('result');
+
+            if (!allAnswered) {
+                resultDiv.innerHTML = '⚠️ Пожалуйста, ответьте на все вопросы.';
+                resultDiv.style.color = '#d9534f';
+                return;
+            }
+
+            let message = '';
+            if (score === total) {
+                message = '🏅 Отлично! Вы отлично разбираетесь в цифровом рубле.';
+                resultDiv.style.color = '#1a8a5c';
+            } else if (score >= 3) {
+                message = '📋 Хорошо! Но есть что повторить.';
+                resultDiv.style.color = '#f0ad4e';
+            } else {
+                message = '📝 Рекомендуем вернуться к теории и попробовать снова.';
+                resultDiv.style.color = '#d9534f';
+            }
+
+            resultDiv.innerHTML = `Ваш результат: ${score} из ${total}. ${message}`;
+        }
+    </script>
+
+</body>
+</html>
